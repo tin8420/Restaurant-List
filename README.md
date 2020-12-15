@@ -3,9 +3,9 @@ It 's a wonderful web where can find most delicious restaurant in Taipei
 
 
 # Features
-1.user can browse the restaurant list in homepage <br>
-2.user can click the restaurant image to check out details of the restaurant <br>
-3.user can search restaurant name to find the restaurant they want <br>
+1.User can browse the restaurant list in homepage <br>
+2.User can click the restaurant image to check out details of the restaurant <br>
+3.User can search restaurant name to find the restaurant they want <br>
 
 # Getting started 
 Install npm in node.js
