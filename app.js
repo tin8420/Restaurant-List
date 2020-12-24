@@ -3,6 +3,7 @@ const port = 3000
 const app = express()
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 const Restaurant = require('./models/restaurant')
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -24,6 +25,7 @@ app.get('/restaurant/new', (req, res) => {
 })
 
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
   Restaurant.find()
@@ -34,8 +36,10 @@ app.get('/', (req, res) => {
 })
 app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
-  const showRestaurant = restaurantList.results.filter(item => item.id === Number(id))
-  res.render('show', { restaurant: showRestaurant })
+  Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('show', { restaurant }))
+    .catch(err => console.log(err))
 })
 
 app.get('/search', (req, res) => {
