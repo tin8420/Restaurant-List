@@ -16,12 +16,14 @@ Add MongoDB database to accomplish CRUD function (12/25)<br>
 <a href="https://nodejs.org/en/">Node.js <br>
  <a href="https://www.mongodb.com/">MongoDB
    
+
+
 # Getting started 
 Install npm in node.js
   <code>$ npm install</code> <br>
-Install nodemon in node.js
-  <code>$ npm install -g nodemon</code>
  
+# Clone my project 
+`git clone https://github.com/tin8420/Restaurant-List.git`
 # Execute 
 Execute file by enter 
 <code>$ npm run dev</code>
