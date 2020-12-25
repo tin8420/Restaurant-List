@@ -90,6 +90,15 @@ app.get('/search', (req, res) => {
   res.render('index', { restaurant: searchRestaurant, keyword: keyword })
 })
 
+app.post("/restaurants/:id/delete", (req, res) => {
+  const id = req.params.id
+  console.log(id)
+  Restaurant.findById(id)
+    .then(restaurant => restaurant.remove())
+    .then(res.redirect('/'))
+    .catch(err => console.log(err))
+
+})
 app.listen(port, () => {
   console.log(`The Server is now listening to http//localhost:${port}`)
 })
