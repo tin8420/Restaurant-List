@@ -34,4 +34,4 @@ Browse the website on
 # Contributor
 Tin Chu 朱敬恆
 
-![abc](https://github.com/tin8420/Restaurant-List/blob/master/%E9%A4%90%E5%BB%B3%E6%B8%85%E5%96%AE.png)
+
