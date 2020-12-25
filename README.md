@@ -1,5 +1,5 @@
 # Restaurant-List
-It 's a wonderful web where can find most delicious restaurant in Taipei
+It 's a wonderful web where can find most delicious restaurant in Taipei<br>
 Add MongoDB database to accomplish CRUD function (12/25)
 
 
@@ -22,7 +22,8 @@ Install nodemon in node.js
  
 # Execute 
 Execute file by enter 
-<code>$ npm run dev</code><br>
+<code>$ npm run dev</code>
+<br>
 Browse the website on
 <code>http://localhost:3000</code>
 
