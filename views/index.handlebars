@@ -1,8 +1,8 @@
 <head>
   <style>
     .search-bar .search-bar-outer {
-      margin: 0 auto;
       max-width: 680px;
+      width: 75%;
       background-color: #fce2cf;
       border-radius: 8px;
       padding: 20px 30px;
@@ -58,6 +58,27 @@
       text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
 
+    .btn-success {
+      margin: 10px;
+    }
+
+    .btn-secondary {
+      padding: 5px;
+      margin: 0 3px;
+    }
+
+    .fa-trash-alt {
+      margin: 2px;
+    }
+
+    .icon-panel {
+      align-items: center;
+    }
+
+    img:hover {
+      opacity: 0.6;
+    }
+
     @media screen and (max-width: 992px) {
 
       .card img {
@@ -85,7 +106,7 @@
 <body>
 
   <!-- search bar -->
-  <div class="container search-bar">
+  <div class="container search-bar d-flex justify-content-center">
     <div class="search-bar-outer">
       <div class="search-bar-inner">
         <form action="/search">
@@ -100,6 +121,7 @@
         </form>
       </div>
     </div>
+    <a class="btn btn-success" href="/restaurants/new" role=" button">新增餐廳</a>
   </div>
 
   <!-- restaurant list -->
@@ -117,12 +139,14 @@
                 <div class="restaurant-category mb-1">
                   <i class="fas fa-utensils pr-2"></i> {{this.category}}
                 </div>
-
-                <span class="badge badge-pill badge-danger font-weight-normal">
-                  {{this.rating}}
-                  <i class="fas fa-star fa-xs"></i>
-                </span>
-
+                <div class="icon-panel d-flex">
+                  <span class="badge badge-pill badge-danger font-weight-normal">
+                    {{this.rating}}
+                    <i class="fas fa-star fa-xs"></i>
+                  </span>
+                  <a class="btn btn-secondary" href="/restaurants/{{this._id}}/update" role=" button">修改餐廳</a>
+                  <a href="/restaurants/delete"><i class="fas fa-trash-alt fa-2x"></i></a>
+                </div>
               </div>
             </div>
           </a>

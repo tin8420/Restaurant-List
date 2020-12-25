@@ -1,0 +1,88 @@
+<style>
+  .container {
+    margin-top: 20px;
+  }
+
+
+  .form-container {
+    display: flex;
+    min-height: 500px;
+    background-color: #F5F5F5;
+    justify-content: center;
+    align-items: center;
+  }
+
+  form {
+    width: 768px;
+    min-height: 480px;
+    margin: 20px;
+  }
+
+  .back-ward {
+    position: absolute;
+    left: 200px;
+    top: 500px;
+  }
+</style>
+
+<div class="container">
+  <div class="form-container">
+    <div class="back-ward">
+      <a href="/"><i class="fas fa-arrow-left fa-4x"></i></a>
+    </div>
+    <form action="/create" method="POST">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="Restaurant name">Restaurant name</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="餐廳名稱">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="category">Category</label>
+          <select id="category" class="form-control" name="category">
+            <option>酒吧</option>
+            <option>咖啡</option>
+            <option>義式餐廳</option>
+            <option>美式</option>
+            <option>日本料理</option>
+            <option>中東料理</option>
+            <option>韓式料理</option>
+            <option>台式料理</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" class="form-control" id="location" name="location" placeholder="請輸入餐廳地址">
+      </div>
+      <div class="form-group">
+        <label for="image">Image</label>
+        <input type="text" class="form-control" id="image" name="image" placeholder="https://">
+      </div>
+      <div class="form-group">
+        <label for="google_map">Google_map</label>
+        <input type="text" class="form-control" id="google_map" name="google_map" placeholder="Copy google map URL">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="phone">phone</label>
+          <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter phone number">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="rating">Rating</label>
+          <select id="rating" class="form-control">
+            <option selected>5</option>
+            <option>4</option>
+            <option>3</option>
+            <option>2</option>
+            <option>1</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="google_map">Description</label>
+        <input type="text" class="form-control" id="description" name="description" placeholder="Description">
+      </div>
+      <button type="submit" class="btn btn-primary">新增</button>
+    </form>
+  </div>
+</div>

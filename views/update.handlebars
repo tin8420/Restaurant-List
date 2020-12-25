@@ -1,0 +1,90 @@
+<style>
+  .container {
+    margin-top: 20px;
+  }
+
+
+  .form-container {
+    display: flex;
+    min-height: 500px;
+    background-color: #F5F5F5;
+    justify-content: center;
+    align-items: center;
+  }
+
+  form {
+    width: 768px;
+    min-height: 480px;
+    margin: 20px;
+  }
+
+  .back-ward {
+    position: absolute;
+    left: 200px;
+    top: 500px;
+  }
+</style>
+
+<div class="container">
+  <div class="form-container">
+    <div class="back-ward">
+      <a href="/"><i class="fas fa-arrow-left fa-4x"></i></a>
+    </div>
+    <form action="/restaurants/{{restaurant._id}}/update" method="POST">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="Restaurant name">Restaurant name</label>
+          <input type="text" class="form-control" id="name" name="name" value='{{restaurant.name}}'>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="category">Category</label>
+          <select id="category" class="form-control" name="category">
+            <option>{{restaurant.category}}</option>
+            <option>酒吧</option>
+            <option>咖啡</option>
+            <option>義式餐廳</option>
+            <option>美式</option>
+            <option>日本料理</option>
+            <option>中東料理</option>
+            <option>韓式料理</option>
+            <option>台式料理</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" class="form-control" id="location" name="location" value='{{restaurant.location}}'>
+      </div>
+      <div class="form-group">
+        <label for="image">Image</label>
+        <input type="text" class="form-control" id="image" name="image" value='{{restaurant.image}}'>
+      </div>
+      <div class="form-group">
+        <label for="google_map">Google_map</label>
+        <input type="text" class="form-control" id="google_map" name="google_map" value='{{restaurant.google_map}}'>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="phone">phone</label>
+          <input type="text" class="form-control" id="phone" name="phone" value='{{restaurant.phone}}'>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="rating">Rating</label>
+          <select id="rating" class="form-control" name="rating">
+            <option>{{restaurant.rating}}</option>
+            <option>5</option>
+            <option>4</option>
+            <option>3</option>
+            <option>2</option>
+            <option>1</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="google_map">Description</label>
+        <input type="text" class="form-control" id="description" name="description" value='{{restaurant.description}}'>
+      </div>
+      <button type="submit" class="btn btn-primary">修改</button>
+    </form>
+  </div>
+</div>

@@ -5,12 +5,14 @@ const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const Restaurant = require('./models/restaurant')
+const db = mongoose.connection
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
+app.use(express.static('public'))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true, useUnifiedTopology: true })
-const db = mongoose.connection
 
 db.on('error', () => {
   console.log('mongodb error')
@@ -20,12 +22,52 @@ db.once('open', () => {
   console.log('mongodb connected')
 })
 
-app.get('/restaurant/new', (req, res) => {
-  return res.render('new')
+app.get('/restaurants/new', (req, res) => {
+  res.render('new')
 })
 
-app.use(express.static('public'))
-app.use(bodyParser.urlencoded({ extended: true }))
+app.post('/create', (req, res) => {
+  const restaurant = req.body
+  Restaurant.create(
+    {
+      name: restaurant.name,
+      category: restaurant.category,
+      image: restaurant.image,
+      location: restaurant.location,
+      phone: restaurant.phone,
+      google_map: restaurant.google_map,
+      rating: restaurant.rating,
+      description: restaurant.description
+    }
+  ).then(res.redirect('/'))
+    .catch(err => console.log(err))
+})
+
+app.get('/restaurants/:id/update', (req, res) => {
+  const id = req.params.id
+  Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('update', { restaurant }))
+    .catch(err => console.log(err))
+})
+
+app.post('/restaurants/:id/update', (req, res) => {
+  const id = req.params.id
+  const request = req.body
+  Restaurant.findById(id)
+    .then(restaurant => {
+      restaurant.name = request.name
+      restaurant.category = request.category
+      restaurant.image = request.image
+      restaurant.location = request.location
+      restaurant.phone = request.phone
+      restaurant.google_map = request.google_map
+      restaurant.rating = request.rating
+      restaurant.description = request.description
+      return restaurant.save()
+    }).then(res.redirect(`/restaurants/${id}`))
+    .catch(err => console.log(err))
+})
 
 app.get('/', (req, res) => {
   Restaurant.find()

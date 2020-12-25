@@ -53,13 +53,25 @@
         font-size: 2rem;
       }
     }
+
+    .back-ward {
+      margin-left: 20px;
+    }
+
+    .fa-arrow-left:hover {
+      opacity: 0.6;
+    }
   </style>
 </head>
 
-
 <h1 class="mb-1 restaurant-show-title">{{restaurant.name}}</h1>
+
 <div class="container">
+
   <div class="row">
+    <div class="back-ward d-flex">
+      <a href="/"><i class="fas fa-arrow-left fa-4x"></i></a>
+    </div>
     <div class="col-12 col-md-10 mx-auto">
 
       <p class="mb-1">
