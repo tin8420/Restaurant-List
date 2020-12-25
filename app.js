@@ -22,10 +22,20 @@ db.once('open', () => {
   console.log('mongodb connected')
 })
 
+// 首頁路由
+app.get('/', (req, res) => {
+  Restaurant.find()
+    .lean()
+    .then(restaurants => res.render('index', { restaurants }))
+    .catch(err => console.log(err))
+
+})
+
+//  設定new頁面路由
 app.get('/restaurants/new', (req, res) => {
   res.render('new')
 })
-
+// POST 新增表單資料資料接收
 app.post('/create', (req, res) => {
   const restaurant = req.body
   Restaurant.create(
@@ -43,6 +53,7 @@ app.post('/create', (req, res) => {
     .catch(err => console.log(err))
 })
 
+// 設定更新頁面路由
 app.get('/restaurants/:id/update', (req, res) => {
   const id = req.params.id
   Restaurant.findById(id)
@@ -51,6 +62,7 @@ app.get('/restaurants/:id/update', (req, res) => {
     .catch(err => console.log(err))
 })
 
+// POST 修改表單資料資料接收
 app.post('/restaurants/:id/update', (req, res) => {
   const id = req.params.id
   const request = req.body
@@ -69,13 +81,7 @@ app.post('/restaurants/:id/update', (req, res) => {
     .catch(err => console.log(err))
 })
 
-app.get('/', (req, res) => {
-  Restaurant.find()
-    .lean()
-    .then(restaurants => res.render('index', { restaurants }))
-    .catch(err => console.log(err))
-
-})
+//  設定查看單一餐廳資訊路由
 app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
   Restaurant.findById(id)
@@ -84,12 +90,7 @@ app.get('/restaurants/:id', (req, res) => {
     .catch(err => console.log(err))
 })
 
-app.get('/search', (req, res) => {
-  const keyword = req.query.keyword
-  const searchRestaurant = restaurantList.results.filter(item => item.name.toLowerCase().includes(keyword.toLocaleLowerCase()))
-  res.render('index', { restaurant: searchRestaurant, keyword: keyword })
-})
-
+// POST 刪除特定餐廳資料接收
 app.post("/restaurants/:id/delete", (req, res) => {
   const id = req.params.id
   console.log(id)
@@ -99,6 +100,15 @@ app.post("/restaurants/:id/delete", (req, res) => {
     .catch(err => console.log(err))
 
 })
+
+// 搜尋功能
+app.get('/search', (req, res) => {
+  const keyword = req.query.keyword
+  const searchRestaurant = restaurantList.results.filter(item => item.name.toLowerCase().includes(keyword.toLocaleLowerCase()))
+  res.render('index', { restaurant: searchRestaurant, keyword: keyword })
+})
+
+
 app.listen(port, () => {
   console.log(`The Server is now listening to http//localhost:${port}`)
 })
