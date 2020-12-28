@@ -6,12 +6,14 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const Restaurant = require('./models/restaurant')
 const handlebars = require('handlebars')
+const methodOverride = require('method-override')
 const db = mongoose.connection
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true, useUnifiedTopology: true })
 
@@ -66,7 +68,7 @@ app.get('/restaurants/:id/update', (req, res) => {
 })
 
 // POST 修改表單資料資料接收
-app.post('/restaurants/:id/update', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   const request = req.body
   Restaurant.findById(id)
@@ -94,7 +96,7 @@ app.get('/restaurants/:id', (req, res) => {
 })
 
 // POST 刪除特定餐廳資料接收
-app.post("/restaurants/:id/delete", (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   Restaurant.findById(id)
     .then(restaurant => restaurant.remove())

@@ -89,6 +89,15 @@
       border: none;
     }
 
+    .fa-edit {
+      color: black;
+      margin-left: 5px;
+    }
+
+    .fa-edit:hover {
+      color: rgb(123, 123, 240);
+    }
+
     @media screen and (max-width: 992px) {
 
       .card img {
@@ -163,8 +172,8 @@
                     {{this.rating}}
                     <i class="fas fa-star fa-xs"></i>
                   </span>
-                  <a class="btn btn-secondary" href="/restaurants/{{this._id}}/update" role=" button">修改餐廳</a>
-                  <form action="/restaurants/{{this._id}}/delete" method="POST">
+                  <a href="/restaurants/{{this._id}}/update"><i class="far fa-edit fa-2x"></i></a>
+                  <form action="/restaurants/{{this._id}}?_method=DELETE" method="POST">
                     <button class="btn-delete" type="submit"><i class="fas fa-trash-alt fa-2x"></i></button>
                   </form>
                 </div>
