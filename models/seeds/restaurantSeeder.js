@@ -1,11 +1,5 @@
-const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/restaurants', { useNewUrlParser: true, useUnifiedTopology: true })
+const db = require('../../config/mongoose')
 const Restaurant = require('../restaurant.js')
-const db = mongoose.connection
-
-db.on('error', () => {
-  console.log('mongodb error')
-})
 
 db.once('open', () => {
   console.log('mongoose connected')
