@@ -131,7 +131,16 @@
         </form>
       </div>
     </div>
-    <a class="btn btn-success" href="/restaurants/new" role=" button">新增餐廳</a>
+    <form action="/sort">
+      <select onchange="this.form.submit()" class="form-control" name="type">
+        <option value="default" selected disabled>排序</option>
+        <option value="name_en" {{#IsSortBy type 'name_en' }}selected {{/IsSortBy}}>名稱 A>Z</option>
+        <option value="-name_en" {{#IsSortBy type '-name_en' }}selected {{/IsSortBy}}>名稱 Z>A</option>
+        <option value="location" {{#IsSortBy type 'location' }}selected {{/IsSortBy}}>地區</option>
+        <option value="category" {{#IsSortBy type 'category' }}selected{{/IsSortBy}}>類型</option>
+      </select>
+    </form>
+
   </div>
 
   <!-- restaurant list -->

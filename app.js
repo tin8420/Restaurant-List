@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const Restaurant = require('./models/restaurant')
+const handlebars = require('handlebars')
 const db = mongoose.connection
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -26,6 +27,7 @@ db.once('open', () => {
 app.get('/', (req, res) => {
   Restaurant.find()
     .lean()
+    .sort('name_en')
     .then(restaurants => res.render('index', { restaurants }))
     .catch(err => console.log(err))
 
@@ -49,7 +51,8 @@ app.post('/create', (req, res) => {
       rating: restaurant.rating,
       description: restaurant.description
     }
-  ).then(res.redirect('/'))
+  )
+    .then(res.redirect('/'))
     .catch(err => console.log(err))
 })
 
@@ -93,13 +96,32 @@ app.get('/restaurants/:id', (req, res) => {
 // POST 刪除特定餐廳資料接收
 app.post("/restaurants/:id/delete", (req, res) => {
   const id = req.params.id
-  console.log(id)
   Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
     .then(res.redirect('/'))
     .catch(err => console.log(err))
 
 })
+
+
+app.get("/sort", (req, res) => {
+  const type = req.query.type
+  Restaurant.find()
+    .lean()
+    .sort(type)
+    .then(restaurants => res.render('index', { restaurants, type }))
+    .catch(err => console.log(err))
+})
+
+
+handlebars.registerHelper('IsSortBy', function (sort, type, options) {
+  if (sort === type) {
+    return options.fn(this)
+  } else {
+    return options.inverse(this)
+  }
+})
+
 
 // 搜尋功能
 app.get('/search', (req, res) => {
