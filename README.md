@@ -11,6 +11,7 @@ Add MongoDB database to accomplish CRUD function (12/25)<br>
 3.User can search restaurant name to find the restaurant they want <br>
 4.User can create new restaurant information to website  (12/25) <br>
 5.User can delete the restaurant which they disliked it (12/25) <br>
+6.User can sort the restaurant menu by name, location , category  (12/29)<br>
 
 #  Required environment
 <a href="https://nodejs.org/en/">Node.js <br>
