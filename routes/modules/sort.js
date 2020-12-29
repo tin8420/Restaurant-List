@@ -2,7 +2,8 @@ const express = require('express')
 const router = express.Router()
 const Restaurant = require('../../models/restaurant')
 
-router.get("/sort", (req, res) => {
+
+router.get("/", (req, res) => {
   const type = req.query.type
   Restaurant.find()
     .lean()
@@ -10,6 +11,7 @@ router.get("/sort", (req, res) => {
     .then(restaurants => res.render('index', { restaurants, type }))
     .catch(err => console.log(err))
 })
+
 
 
 module.exports = router
